@@ -22,13 +22,13 @@ public class ProductionScheduling {
         MainWindow mw;
         mw = new MainWindow();
         mw.setVisible(true);
-        
-        mw.printText("Rozpoczynam harmonogramowanie:\n");
-        
-        CLPTask task = new CLPTask();
-        task.model();
-        task.search();
-        mw.printText(task.returnStoreString());
+//        
+//        mw.printText("Rozpoczynam harmonogramowanie:\n");
+//        
+//        CLPTask task = new CLPTask();
+//        task.model();
+//        task.search();
+//        mw.printText(task.returnStoreString());
         
     }
     
