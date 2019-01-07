@@ -6,6 +6,30 @@
 package gui;
 
 import core.CLPTask;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+
+import org.jacop.examples.fd.Conference;
+import org.jacop.examples.fd.PerfectSquare;
+
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.util.Date;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.IntervalCategoryDataset;
+import org.jfree.data.gantt.Task;
+import org.jfree.data.gantt.TaskSeries;
+import org.jfree.data.gantt.TaskSeriesCollection;
+
 
 /**
  *
@@ -13,12 +37,21 @@ import core.CLPTask;
  */
 public class MainWindow extends javax.swing.JFrame {
 
+    private MyChart chart;
+    
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
         initComponents();
-    }
+        
+        chart = new MyChart();
+        ganttChartsPanel.setLayout(new GridLayout(1, 1)); 
+        ganttChartsPanel.add(chart.createGanttChart());
+        //ganttChartsPanel.add(chart.createChart("Zmienna", 50));
+        
+       
+    }   
     
     public void printText(String text)
     {
@@ -39,10 +72,10 @@ public class MainWindow extends javax.swing.JFrame {
         startTestBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        perfectSquareButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        conferenceButton = new javax.swing.JButton();
+        productionSchedulingButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         consolePanel = new javax.swing.JPanel();
@@ -63,32 +96,31 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel2.setText("Perfect square");
 
-        jButton2.setText("Start");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        perfectSquareButton.setText("Start");
+        perfectSquareButton.setToolTipText("");
+        perfectSquareButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                perfectSquareButtonActionPerformed(evt);
             }
         });
 
         jLabel3.setText("Conference");
 
-        jButton3.setText("Start");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        conferenceButton.setText("Start");
+        conferenceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                conferenceButtonActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Start");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        productionSchedulingButton.setText("Start");
+        productionSchedulingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                productionSchedulingButtonActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Production Scheduling");
-
-        jLabel5.setIcon(new javax.swing.ImageIcon("E:\\Polibuda\\!IX Sem\\ProgramowanieOgraniczeniowe\\Projekt\\Images\\logo.png")); // NOI18N
 
         javax.swing.GroupLayout startPanelLayout = new javax.swing.GroupLayout(startPanel);
         startPanel.setLayout(startPanelLayout);
@@ -100,7 +132,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addGroup(startPanelLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4))
+                        .addComponent(productionSchedulingButton))
                     .addGroup(startPanelLayout.createSequentialGroup()
                         .addGroup(startPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -109,13 +141,13 @@ public class MainWindow extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(startPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(startTestBtn)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3))))
+                            .addComponent(perfectSquareButton)
+                            .addComponent(conferenceButton))))
                 .addGap(107, 107, 107))
             .addGroup(startPanelLayout.createSequentialGroup()
                 .addGap(145, 145, 145)
                 .addComponent(jLabel5)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         startPanelLayout.setVerticalGroup(
             startPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,15 +159,15 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(26, 26, 26)
                 .addGroup(startPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(perfectSquareButton)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(startPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
+                    .addComponent(conferenceButton)
                     .addComponent(jLabel3))
                 .addGap(39, 39, 39)
                 .addGroup(startPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
+                    .addComponent(productionSchedulingButton)
                     .addComponent(jLabel4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -150,9 +182,9 @@ public class MainWindow extends javax.swing.JFrame {
         consolePanel.setLayout(consolePanelLayout);
         consolePanelLayout.setHorizontalGroup(
             consolePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 516, Short.MAX_VALUE)
+            .addGap(0, 540, Short.MAX_VALUE)
             .addGroup(consolePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE))
         );
         consolePanelLayout.setVerticalGroup(
             consolePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,7 +201,7 @@ public class MainWindow extends javax.swing.JFrame {
         ganttChartsPanel.setLayout(ganttChartsPanelLayout);
         ganttChartsPanelLayout.setHorizontalGroup(
             ganttChartsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 516, Short.MAX_VALUE)
+            .addGap(0, 540, Short.MAX_VALUE)
         );
         ganttChartsPanelLayout.setVerticalGroup(
             ganttChartsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,10 +214,7 @@ public class MainWindow extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,21 +227,48 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    /**
+   * Start Production Scheduling
+   * @param  evt Caught event after click
+   * @see         JaCoPExamples
+   */
+    private void productionSchedulingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productionSchedulingButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_productionSchedulingButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+   /**
+   * Start Conference example
+   * @param  evt Caught event after click
+   * @see         JaCoPExamples
+   */
+    private void conferenceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conferenceButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Conference conf = new Conference();
+        conf.model();
+        if (conf.searchAllAtOnce())
+            System.out.println("Solution(s) found");
+    }//GEN-LAST:event_conferenceButtonActionPerformed
+    
+   /**
+   * Start PerfectSquare example
+   * @param  evt Caught event after click
+   * @see         JaCoPExamples
+   */
+    private void perfectSquareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfectSquareButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        PerfectSquare ps = new PerfectSquare();
+        ps.model();
+        if (ps.search())
+            System.out.println("Solution(s) found");
+    }//GEN-LAST:event_perfectSquareButtonActionPerformed
 
+   /**
+   * Start CLPTask
+   * @param  evt Caught event after click
+   * @see         JaCoPExamples
+   */
     private void startTestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTestBtnActionPerformed
         // TODO add your handling code here:
-
         printText("Rozpoczynam harmonogramowanie:\n");
 
         CLPTask task = new CLPTask();
@@ -221,9 +277,11 @@ public class MainWindow extends javax.swing.JFrame {
         printText(task.returnStoreString());
     }//GEN-LAST:event_startTestBtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+   /**
+   * Here the whole program starts
+   * @param  args array of input parameters
+   */
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -257,11 +315,9 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton conferenceButton;
     private javax.swing.JPanel consolePanel;
     private javax.swing.JPanel ganttChartsPanel;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -269,6 +325,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton perfectSquareButton;
+    private javax.swing.JButton productionSchedulingButton;
     private javax.swing.JPanel startPanel;
     private javax.swing.JButton startTestBtn;
     private javax.swing.JTextArea textArea;
