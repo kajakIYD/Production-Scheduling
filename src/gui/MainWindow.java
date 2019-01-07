@@ -48,9 +48,6 @@ public class MainWindow extends javax.swing.JFrame {
         chart = new MyChart();
         ganttChartsPanel.setLayout(new GridLayout(1, 1)); 
         ganttChartsPanel.add(chart.createGanttChart());
-        //ganttChartsPanel.add(chart.createChart("Zmienna", 50));
-        
-       
     }   
     
     public void printText(String text)

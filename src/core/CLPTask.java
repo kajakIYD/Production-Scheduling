@@ -67,12 +67,13 @@ public class CLPTask {
     
     public void model()
     {    
-        XplusYlteqZ ctr = new XplusYlteqZ(t1, d1, t2);
-        ctr = new XplusYlteqZ(t1, d1, t3);
-        ctr = new XplusYlteqZ(t2, d2, t4);
+        XplusYlteqZ ctr1 = new XplusYlteqZ(t1, d1, t2);
+        XplusYlteqZ ctr2 = new XplusYlteqZ(t1, d1, t3);
+        XplusYlteqZ ctr3 = new XplusYlteqZ(t2, d2, t4);
+//        IntVar[][] tab = {{t1,proc1,d1,1}, {t2,proc2,d2,1}, {t3,proc3,d3,1},
+//            {t4,proc4,d4,1}}; 
 //        Diff2 ctrDiff = new Diff2(store,
-//                [[t1,proc1,d1,1], [t2,proc2,d2,1], [t3,proc3,d3,1],
-//        [t4,proc4,d4,1]]);
+//                tab);
         //store.impose(new Alldifferent(vars));?
     }
     

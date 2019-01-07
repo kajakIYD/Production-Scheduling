@@ -88,58 +88,37 @@ public class MyChart {
      private IntervalCategoryDataset getCategoryDataset() {
 
       TaskSeries series1 = new TaskSeries("Estimated Date");
-      series1.add(new Task("Requirement",
+      series1.add(new Task("Machine1",
             Date.from(LocalDate.of(2017, 7, 3).atStartOfDay().toInstant(ZoneOffset.UTC)),
             Date.from(LocalDate.of(2017, 7, 7).atStartOfDay().toInstant(ZoneOffset.UTC))
          ));
       
-      series1.add(new Task("Design",
+      series1.add(new Task("Machine2",
             Date.from(LocalDate.of(2017, 7, 10).atStartOfDay().toInstant(ZoneOffset.UTC)),
             Date.from(LocalDate.of(2017, 7, 14).atStartOfDay().toInstant(ZoneOffset.UTC))
          ));
       
-      series1.add(new Task("Coding",
+      series1.add(new Task("Machine3",
             Date.from(LocalDate.of(2017, 7, 17).atStartOfDay().toInstant(ZoneOffset.UTC)),
             Date.from(LocalDate.of(2017, 7, 21).atStartOfDay().toInstant(ZoneOffset.UTC))
          ));
       
-      series1.add(new Task("Testing",
-            Date.from(LocalDate.of(2017, 7, 24).atStartOfDay().toInstant(ZoneOffset.UTC)),
-            Date.from(LocalDate.of(2017, 7, 28).atStartOfDay().toInstant(ZoneOffset.UTC))
-         ));
-      
-      series1.add(new Task("Deployment",
-            Date.from(LocalDate.of(2017, 07, 31).atStartOfDay().toInstant(ZoneOffset.UTC)),
-            Date.from(LocalDate.of(2017, 8, 4).atStartOfDay().toInstant(ZoneOffset.UTC))
-         ));
-      
-      
       TaskSeries series2 = new TaskSeries("Actual Date");
-      series2.add(new Task("Requirement",
+      series2.add(new Task("Machine1",
             Date.from(LocalDate.of(2017, 7, 3).atStartOfDay().toInstant(ZoneOffset.UTC)),
             Date.from(LocalDate.of(2017, 7, 05).atStartOfDay().toInstant(ZoneOffset.UTC))
          ));
       
-      series2.add(new Task("Design",
+      series2.add(new Task("Machine2",
             Date.from(LocalDate.of(2017, 7, 6).atStartOfDay().toInstant(ZoneOffset.UTC)),
             Date.from(LocalDate.of(2017, 7, 17).atStartOfDay().toInstant(ZoneOffset.UTC))
          ));
       
-      series2.add(new Task("Coding",
+      series2.add(new Task("Machine3",
             Date.from(LocalDate.of(2017, 7, 18).atStartOfDay().toInstant(ZoneOffset.UTC)),
             Date.from(LocalDate.of(2017, 7, 27).atStartOfDay().toInstant(ZoneOffset.UTC))
          ));
       
-      series2.add(new Task("Testing",
-            Date.from(LocalDate.of(2017, 7, 28).atStartOfDay().toInstant(ZoneOffset.UTC)),
-            Date.from(LocalDate.of(2017, 8, 1).atStartOfDay().toInstant(ZoneOffset.UTC))
-         ));
-      
-      series2.add(new Task("Deployment",
-            Date.from(LocalDate.of(2017, 8, 2).atStartOfDay().toInstant(ZoneOffset.UTC)),
-            Date.from(LocalDate.of(2017, 8, 4).atStartOfDay().toInstant(ZoneOffset.UTC))
-         ));
-
       TaskSeriesCollection dataset = new TaskSeriesCollection();
       dataset.add(series1);
       dataset.add(series2);
